@@ -1,85 +1,155 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="app-wrapper">
+    <div class="app">
+      <Navigation />
+      <router-view />
+      <Footer />
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<script>
+import Navigation from "./components/Navigation.vue";
+import Footer from "./components/Footer.vue";
+
+export default {
+  name: "app",
+  components: {
+    Navigation,
+    Footer,
+  },
+  data() {
+    return {};
+  },
+  created() {},
+  mounted() {},
+  methods: {},
+  watch: {},
+};
+</script>
+
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
 }
 
-nav a.router-link-exact-active:hover {
+.link-light {
+  color: #fff;
+}
+
+.arrow {
+  margin-left: 8px;
+  width: 12px;
+  path {
+    fill: #000;
+  }
+}
+
+.arrow-light {
+  path {
+    fill: #fff;
+  }
+}
+
+button,
+.router-button {
+  transition: 500ms ease all;
+  cursor: pointer;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background-color: #303030;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  text-transform: uppercase;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: rgba(48, 48, 48, 0.7);
+  }
+}
+
+.button-ghost {
+  color: #000;
+  padding: 0;
+  border-radius: 0;
+  margin-top: 50px;
+  font-size: 15px;
+  font-weight: 500;
   background-color: transparent;
+  @media (min-width: 700px) {
+    margin-top: 0;
+    margin-left: auto;
+  }
+  i {
+    margin-left: 8px;
+  }
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.button-light {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
 }
 
-nav a:first-of-type {
-  border: 0;
+.button-inactive {
+  pointer-events: none !important;
+  cursor: none !important;
+  background-color: rgba(128, 128, 128, 0.5) !important;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.error {
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.blog-card-wrap {
+  position: relative;
+  padding: 80px 16px;
+  background-color: #f1f1f1;
+  @media (min-width: 500px) {
+    padding: 100px 16px;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  .blog-cards {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr;
+    @media (min-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 </style>
