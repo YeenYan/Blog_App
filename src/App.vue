@@ -137,6 +137,7 @@ button,
   @media (min-width: 500px) {
     padding: 100px 16px;
   }
+
   .blog-cards {
     display: grid;
     gap: 32px;

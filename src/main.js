@@ -9,6 +9,13 @@ const app = createApp(App);
 
 app.use(Vue2Editor);
 app.use(store);
+
 app.use(router);
+
+// Implementing the Title Tab on every page
+router.beforeEach((to, from, next) => {
+  document.title = `${to.meta.title} | BlogApp`;
+  next();
+});
 
 app.mount('#app');
